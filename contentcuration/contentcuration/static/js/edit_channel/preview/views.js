@@ -89,12 +89,17 @@ var PreviewView = BaseViews.BaseView.extend({
                 case "mp4":
                     preview_template = require("./hbtemplates/preview_templates/video.handlebars");
                     break;
+                case "perseus":
+                    preview_template = require("./hbtemplates/preview_templates/exercise.handlebars");
+                    break;
                 default:
                     preview_template = require("./hbtemplates/preview_templates/default.handlebars");
             }
             this.$("#preview_window").html(preview_template({
                 source: location,
-                extension:mimetype
+                extension:mimetype,
+                title: this.current_preview.original_filename,
+                source_url: this.current_preview.source_url
             }));
             if(force_load && this.current_preview.recommended_kind === "video"){
                 $("#preview_window video").load();

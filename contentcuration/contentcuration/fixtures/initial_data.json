@@ -159,6 +159,13 @@
       "mimetype" : "audio/wav"
     }
   },
+  {
+    "model": "contentcuration.FileFormat",
+    "fields": {
+      "extension": "perseus",
+      "mimetype" : ".perseus"
+    }
+  },
 
 
 
@@ -283,6 +290,32 @@
       "thumbnail" : true,
       "order" : 2,
       "kind" : "document",
+      "allowed_formats" : ["png", "jpg", "jpeg"]
+    }
+  },
+  {
+    "model": "contentcuration.FormatPreset",
+    "fields": {
+      "id" : "exercise",
+      "readable_name": "Exercise",
+      "multi_language" : false,
+      "supplementary" : false,
+      "thumbnail" : false,
+      "order" : 1,
+      "kind" : "exercise",
+      "allowed_formats" : ["perseus"]
+    }
+  },
+  {
+    "model": "contentcuration.FormatPreset",
+    "fields": {
+      "id" : "exercise_thumbnail",
+      "readable_name": "Thumbnail",
+      "multi_language" : false,
+      "supplementary" : true,
+      "thumbnail" : true,
+      "order" : 2,
+      "kind" : "exercise",
       "allowed_formats" : ["png", "jpg", "jpeg"]
     }
   },
