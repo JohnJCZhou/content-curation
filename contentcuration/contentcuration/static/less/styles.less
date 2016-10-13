@@ -154,134 +154,103 @@ body {
 
 /* LOGIN STYLING */
 #login-container{
-	@login-background: rgba(145,81,148,.6); /*#915194*/
-	@login-secondary-color: rgba(255,255,255,.85); /*#DEEDE9*/
-	@login-text-bg-color: rgba(85,170,147,.5); /*#55AA93*/
-	@login-btn-color:  #067C7B;
-
-	/* Image background */
-	/*background: url('/static/img/kolibri_login.png');*/
-
-	/* Gradient background */
-	background: white; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(black, white); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(black, white); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(black, white); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(black, white); /* Standard syntax */
-
-	background-size: 100vw 100vh;
-	width:100vw;
-	height:100vh;
-	margin:0;
-
-	#login_le{
-		margin-left:400px;
-		color:white;
-		margin-top:10px;
-		font-size:12pt;
-		text-decoration:none;
-		#le_img{
-			width:32px;
-			height:32px;
-			margin-right:5px;
-		}
-	}
-
-	#login_le:hover{
-		font-weight:bold;
-		#le_img{
-			width:36px;
-			height:36px;
-		}
-	}
-
-	#login-overlay{
-		background:@login-background;
+	@login-brand-bg-color:white;
+	@login-form-bg-color:#8175A0;
+	@login-btn-color:  #69ACA6;
+	#login-branding{
+		background-color: @login-brand-bg-color;
+		width:50vw;
 		height:100vh;
-		width:100vw;
+		padding-top:15%;
+		#login-image{
+			min-width:200px;
+			width:35%;
+			height:auto;
+			display:inline-block;
+			vertical-align: middle;
+			margin:25px;
+			margin-top:-20px;
+		}
+		#login-title{
+			display: inline-block;
+			vertical-align: middle;
+			h1{
+				font-weight: bold;
+				font-size:50pt;
+			}
+			h3{
+				font-size:35pt;
+			}
+		}
+		#le-brand{
+			position:absolute;
+			bottom:5em;
+			margin-left:25px;
+			img{
+				bottom:0;
+				height:70px;
+				width:auto;
+			}
+		}
+	}
+
+	#form-area{
+		background-color: @login-form-bg-color;
+		height:100vh;
+		width:auto;
+		padding:30px;
+		color:white;
+		font-size:12pt;
 		ul{
 			list-style:none;
 		}
 
 		li{
-			color:@red-error-color;
 			font-weight:bold;
 		}
 		.required_asterisk {
-			color:@red-error-color;
+			color:@login-btn-color;
+			font-size:20pt;
+		}
+		.btn-login{
+			background-color:@login-btn-color;
+			margin-bottom:20px;
+			margin-top: 20px;
+			padding:5px 80px;
+			font-size:18pt;
+			font-weight:bold;
 		}
 
-		#login-form{
-			margin-top:10%;
-			padding:30px;
-			background-color:@login-secondary-color;
-			width:600px;
-			#login-title-area{
-				margin-bottom:40px;
-				width:400px;
-				margin-left:100px;
-
-				#login-image{
-					width:120px;
-					height:100px;
-					margin:0;
-					margin-right:-100px;
-					margin-top: -10px;
-					/*background-color:white;
-					border-radius:500px;*/
-					padding:10px;
-				}
-				#login-title{
-					font-size:40pt;
-					margin:0;
-				}
-				#login-subheading{
-					font-size:15pt;
-					color:gray;
-					display: block;
-					font-style:italic;
-					margin:0;
-				}
-			}
-			input{
-				outline-color: #55AA93;
-				border:none;
-				background-color:@login-text-bg-color;
-				padding:5px;
-				font-size:14pt;
-			}
-
-			#id_last_name{
-				margin-bottom:30px;
-			}
-
-			#form-wrapper{
-				text-align:right;
-				margin-right:25%;
-
-			}
-
-			.btn-login{
-				width:50%;
-				background-color:@login-btn-color;
-				margin-bottom:10px;
-				margin-top: 20px;
-				font-size:15pt;
-				color:white;
-			}
+		.login-action-text{
+			color:white;
+			font-weight:normal;
+		}
+		#register_prompt{
+			font-size:15pt;
+			font-weight:bold;
+		}
+		#form-wrapper{
+			margin-bottom:30px;
 
 			#lost_password_prompt{
-				margin-right:-10px;
+				margin-top:10px;
+				font-size:12pt;
+				margin-right:5%;
+				text-align: right;
 			}
-
-			.login-action-text{
-				color:@login-btn-color;
-			}
-
-			#register_prompt{
-				font-size:14pt;
+			input{
+				padding:5px;
+				width:40%;
+				color:black;
+				font-size:15pt;
 			}
 		}
+	}
+	.login-form{
+		padding-top:17% !important;
+	}
+	.registration-form{
+		padding-top:12% !important;
 	}
 }
 

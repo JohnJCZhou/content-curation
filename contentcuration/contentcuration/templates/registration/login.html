@@ -9,55 +9,53 @@
 {% block content %}
 
 <div id="login-container">
-	<div id="login-overlay" class="text-center">
-		<br/>
-		<div id="login-form" class="container">
-			<div id="login-title-area">
-				<img id="login-image" class="pull-left" src="{% static 'img/kolibri_login.png' %}"/>
-				<h1 id="login-title">Kolibri</h1>
-				<p id="login-subheading">Content Curation</p>
+	<div id="login-branding" class="pull-left container">
+		<div id="login-brand">
+			<img id="login-image" class="pull-left" src="{% static 'img/kolibri_login.png' %}"/>
+			<div id="login-title" class="text-center"><h1>Kolibri</h1><h3>Content Curation</h3></div>
+		</div>
+		<div id="le-brand">
+			<a id="login_le" href="https://learningequality.org/" target="_blank"><img src="{% static 'img/le_login.png' %}" id="le_img"></a>
+		</div>
+	</div>
+	<div id="form-area" class="container-fluid text-center login-form">
+		<ul>
+			{% if form.errors %}
+			<li>{% trans "Your username and password didn't match. Please try again." %}</li>
+			{% endif %}
+
+			{% if next %}
+			    {% if user.is_authenticated %}
+			    <li>{% trans "Your account doesn't have access to this page. To proceed, please login with an account that has access." %}</li>
+			    {% else %}
+			    <li>{% trans "Please login to see this page." %}</li>
+			    {% endif %}
+			{% endif %}
+		</ul>
+
+		<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+			<div id="form-wrapper">
+				{% csrf_token %}
+				<div class="form-group">
+				    {{ form.username }}
+				</div>
+				<div class="form-group">
+				    {{ form.password }}
+				    {# Assumes you setup the password_reset view in your URLconf #}
+					<p id="lost_password_prompt"><a  class="action-text login-action-text" href="{% url 'auth_password_reset' %}">{% trans "Lost password?" %}</a></p>
+				</div>
 			</div>
 
-
-				<ul>
-					{% if form.errors %}
-					<li>{% trans "Your username and password didn't match. Please try again." %}</li>
-					{% endif %}
-
-					{% if next %}
-					    {% if user.is_authenticated %}
-					    <li>{% trans "Your account doesn't have access to this page. To proceed, please login with an account that has access." %}</li>
-					    {% else %}
-					    <li>{% trans "Please login to see this page." %}</li>
-					    {% endif %}
-					{% endif %}
-				</ul>
-
-				<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
-					<div id="form-wrapper">
-						{% csrf_token %}
-						<div class="form-group">
-						    {{ form.username.label_tag }}
-						    {{ form.username }}
-						</div>
-						<div class="form-group">
-						    {{ form.password.label_tag }}
-						    {{ form.password }}
-						    {# Assumes you setup the password_reset view in your URLconf #}
-							<p id="lost_password_prompt"><a  class="action-text login-action-text" href="{% url 'auth_password_reset' %}">{% trans "Lost password?" %}</a></p>
-						</div>
-					</div>
-
-
-				<input class="btn btn-login" type="submit" value="Login" />
-				<input type="hidden" name="next" value="{{ next }}" />
-			</form>
-			<a href="/accounts/register" class="action-text login-action-text" id="register_prompt">Create an Account</a>
-
-
-		</div>
-		<a id="login_le" href="https://learningequality.org/" target="_blank"><img src="{% static 'img/le_logo.png' %}" id="le_img">Learning Equality</a>
+			<input class="btn btn-login" type="submit" value="Sign In" />
+			<input type="hidden" name="next" value="{{ next }}" />
+		</form>
+		<a href="/accounts/register" class="action-text login-action-text" id="register_prompt">Create an Account</a>
 	</div>
 </div>
-
+<script type="text/javascript" >
+    $(document).ready(function(){
+        $("#id_username").attr('placeholder', '{{form.username.label}}');
+        $("#id_password").attr('placeholder', '{{form.password.label}}');
+    });
+</script>
 {% endblock %}

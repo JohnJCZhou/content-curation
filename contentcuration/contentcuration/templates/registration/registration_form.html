@@ -9,37 +9,45 @@
 {% block content %}
 
 <div id="login-container">
-	<div id="login-overlay" class="text-center">
-		<br/>
-		<div id="login-form" class="container">
-			<div id="login-title-area">
-				<img id="login-image" class="pull-left" src="{% static 'img/kolibri_login.png' %}"/>
-				<h1 id="login-title">Kolibri</h1>
-				<p id="login-subheading">Content Curation</p>
-			</div>
-			<ul>
-				 {% for field in form %}
-			        {% for error in field.errors %}
-			            <li>{{ error|escape }}</li>
-			        {% endfor %}
-			    {% endfor %}
-			</ul>
-			<form action="/accounts/register/" method="post">
-				<div id="form-wrapper">
-					{% csrf_token %}
-					{% for field in form %}
-					<p>
-					 <label>{% if field.field.required %}<i class="required_asterisk">*</i>{% endif %} {{field.label}}</label>
-					 {{field}}
-					 </p>
-					{% endfor %}
-				</div>
-				<input class="btn btn-login" type="submit" value="Register" />
-			</form>
-			<a href="{% url 'django.contrib.auth.views.login' %}" class="action-text login-action-text" id="register_prompt">Cancel</a>
+	<div id="login-branding" class="pull-left container">
+		<div id="login-brand">
+			<img id="login-image" class="pull-left" src="{% static 'img/kolibri_login.png' %}"/>
+			<div id="login-title" class="text-center"><h1>Kolibri</h1><h3>Content Curation</h3></div>
 		</div>
-		<a id="login_le" href="https://learningequality.org/" target="_blank"><img src="{% static 'img/le_logo.png' %}" id="le_img">Learning Equality</a>
+		<div id="le-brand">
+			<a id="login_le" href="https://learningequality.org/" target="_blank"><img src="{% static 'img/le_login.png' %}" id="le_img"></a>
+		</div>
+	</div>
+	<div id="form-area" class="container-fluid text-center registration-form">
+		<ul>
+			{% for field in form %}
+		        {% for error in field.errors %}
+		            <li>{{ error|escape }}</li>
+		        {% endfor %}
+		    {% endfor %}
+		</ul>
+		<form action="/accounts/register/" method="post">
+			<div id="form-wrapper">
+				{% csrf_token %}
+				{% for field in form %}
+				<p>
+				 <!-- <label>{% if field.field.required %}<i class="required_asterisk">*</i>{% endif %}</label> -->
+				 {{field}}
+				 </p>
+				{% endfor %}
+			</div>
+			<input class="btn btn-login" type="submit" value="Sign Up" />
+		</form>
+		<a href="{% url 'django.contrib.auth.views.login' %}" class="action-text login-action-text" id="register_prompt">Go back</a>
 	</div>
 </div>
-
+<script type="text/javascript" >
+    $(document).ready(function(){
+        $("#id_first_name").attr('placeholder', '{{form.first_name.label}} *');
+        $("#id_last_name").attr('placeholder', '{{form.last_name.label}} *');
+        $("#id_email").attr('placeholder', '{{form.email.label}} *');
+        $("#id_password1").attr('placeholder', '{{form.password1.label}} *');
+        $("#id_password2").attr('placeholder', '{{form.password2.label}} *');
+    });
+</script>
 {% endblock %}
